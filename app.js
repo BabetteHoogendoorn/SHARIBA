@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var pg = require('pg');
+var bcrypt = require('bcrypt');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -11,17 +14,62 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', '../views');
 app.set('view engine', 'jade');
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static, '../public');
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.use(session({
+  secret: 'oh wow very secret much security',
+  resave: true,
+  saveUninitialized: false
+}));
+
+var user = sequelize.define('users', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [1, 50]
+    }
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [1, 55]
+    }
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [3, Infinity]
+    },
+  }
+}, {
+  freezeTableName: true,
+  instanceMethods: {
+    generateHash: function(password) {
+      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    },
+    validPassword: function(password) {
+      return bcrypt.compareSync(password, this.password);
+    },
+  }
+});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
