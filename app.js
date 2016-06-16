@@ -87,6 +87,25 @@ var user = sequelize.define('users', {
   }
 });
 
+var cityTip = sequelize.define('cityTips', {
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [3, Infinity]
+    },
+  },
+  body: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [3, Infinity]
+    },
+  },
+  user_id: Sequelize.INTEGER
+});
 
 
 // catch 404 and forward to error handler

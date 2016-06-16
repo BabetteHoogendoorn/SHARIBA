@@ -7,26 +7,26 @@ router.get('/profile', function(request, response) {
 		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
 	} else {
 		var ID = request.session.user.id;
-		message.findAll({
+		cityTip.findAll({
 			where: {
 				user_id: ID,
 			}
-		}).then(function(messages) {
-			var Data = messages.map(function(appmessage) {
+		}).then(function(cityTips) {
+			var Data = cityTip.map(function(profiletips) {
 				return {
-					title: appmessage.dataValues.title,
-					body: appmessage.dataValues.body,
-					user_id: appmessage.dataValues.user_id
+					title: profiletips.dataValues.title,
+					body: profiletips.dataValues.body,
+					user_id: profiletips.dataValues.user_id
 				}
 
 
 			})
-			var allOwnMessages = Data;
+			var usersCityTips = Data;
 
-			console.log(allOwnMessages);
+			console.log(usersCityTips);
 			//console.log(allComments);
 			response.render('profile', {
-				allOwnMessages: allOwnMessages,
+				usersCityTips: usersCityTips,
 				name: request.session.user.name
 			});
 		});
