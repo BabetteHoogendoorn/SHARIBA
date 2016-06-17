@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+#foundPlaces {
+	z-index: 100;
+	background-color: white;
+	color:black;
+}
