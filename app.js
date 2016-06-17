@@ -7,30 +7,48 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var pg = require('pg');
 var bcrypt = require('bcrypt');
+var session = require('express-session');
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('SHARIBA', process.env.POSTGRES_USER, null, {
+  host: 'localhost',
+  dialect: 'postgres',
+  define: {
+    timestamps: false
+  }
+});
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var profile = require('./routes/profile');
+var city = require('./routes/city');
+var log_in = require ('./routes/login');
 
 var app = express();
+//var app = module.exports = express();
 
 // view engine setup
-app.set('views', '../views');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static, '../public');
+
+app.use(express.static ('../public'));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'oh wow very secret much security',
   resave: true,
   saveUninitialized: false
 }));
+
+
 
 var user = sequelize.define('users', {
   name: {
@@ -69,6 +87,7 @@ var user = sequelize.define('users', {
   }
 });
 
+
 var country = sequelize.define('countries', {
   name: {
     Sequelize.STRING,
@@ -85,6 +104,27 @@ var city = sequelize.define('cities', {
 
 country.hasMany(city)
 city.belongsTo(country)
+
+var cityTip = sequelize.define('cityTips', {
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [3, Infinity]
+    },
+  },
+  body: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [3, Infinity]
+    },
+  },
+  user_id: Sequelize.INTEGER
+});
+
 
 
 // catch 404 and forward to error handler

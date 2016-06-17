@@ -1,9 +1,14 @@
-app.get('/login', function(request, response) {
+var express = require('express');
+var router = express.Router();
+var bodyParser = require('body-parser');
+
+
+router.get('/login', function(request, response) {
 	response.render('login', {});
 });
 
 
-app.post('/login', bodyParser.urlencoded({
+router.post('/login', bodyParser.urlencoded({
 	extended: true
 }), function(request, response) {
 	if (request.body.email.length === 0) {
@@ -34,3 +39,5 @@ app.post('/login', bodyParser.urlencoded({
 		});
 	});
 });
+
+module.exports = router;
