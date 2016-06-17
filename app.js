@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var pg = require('pg');
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 var session = require('express-session');
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('SHARIBA', process.env.POSTGRES_USER, null, {
+var sequelize = new Sequelize('shariba', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
   host: 'localhost',
   dialect: 'postgres',
   define: {
@@ -23,6 +23,7 @@ var users = require('./routes/users');
 var profile = require('./routes/profile');
 var city = require('./routes/city');
 var log_in = require ('./routes/login');
+var search = require ('./routes/search')
 
 var app = express();
 //var app = module.exports = express();
@@ -90,20 +91,29 @@ var user = sequelize.define('users', {
 
 var country = sequelize.define('countries', {
   name: {
-    Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [2, Infinity]
+    },
   }
 })
 
 var city = sequelize.define('cities', {
   name: {
-    Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [2, Infinity]
+    },
   }
 })
 
 country.hasMany(city)
 city.belongsTo(country)
+//city.hasMany(cityTip)
 
 var cityTip = sequelize.define('cityTips', {
   title: {
@@ -134,6 +144,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handlers
 
 // development error handler
@@ -158,5 +169,36 @@ app.use(function(err, req, res, next) {
   });
 });
 
+
+// sequelize.sync().then(function(){
+//   Promise.all([
+//     country.create({
+//       name: 'Netherlands'
+//     }).then(function(thecountry){
+//       city.create({
+//         name:'Amsterdam',
+//         countryId: thecountry.id}
+//         ),
+//       city.create({
+//         name:'Eindhoven',
+//         countryId: thecountry.id}
+//         ).then(function(thecity){
+//           cityTip.create({
+//             title:'Top spot',
+//             body:'This place is awesome!',
+//             user_id: 1
+//           })
+//         })
+//       }),
+//     country.create({
+//       name:'Austria'
+//     }).then(function(thecountry){
+//      city.create({
+//       name:'Salzburg',
+//       countryId: thecountry.id
+//     })
+//    })
+//     ])
+// })
 
 module.exports = app;

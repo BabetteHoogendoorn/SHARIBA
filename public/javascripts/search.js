@@ -7,18 +7,18 @@ $ ( document ).ready( function () {
 		var inputLetters = {
 			searchTyping: $ ('#searchform') .val( )
 		}
-		$('#places').empty()
+		$('#foundPlaces').empty()
 			if(fireRequest) {
 				fireRequest = false
-				$.post ('/findAll', inputLetters, function(data){
+				$.post ('/searchResult', inputLetters, function(data){
 
 					for (person in data){
 						console.log(data[person].firstname)
-						$ ( '#places' ).append( '<div class="newPerson">' + data[person].firstname + " " + 
+						$ ( '#foundPlaces' ).append( '<div class="newCity">' + data[person].firstname + " " + 
 							data[person].lastname + '</div>' )
 					}
-					$ ( '.newPerson' ) .click( function() { 
-						$('#searchlist').val($(this).text()) 
+					$ ( '.newCity' ) .click( function() { 
+						$('#searchform').val($(this).text()) 
 					})
 				})
 				setTimeout(function(){

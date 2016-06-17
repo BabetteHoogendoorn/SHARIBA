@@ -4,11 +4,11 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-  	 form(name="searchform", method="post", action="/searchResult")
+      form(name="searchform", method="post", action="/searchResult")
         div.input
             span.label 
             input(type="text", name="searchTyping")
-            div#places
+            div#foundPlaces
         div.actions
             input(type="submit", value="Search")
     block content
