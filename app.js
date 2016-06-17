@@ -69,6 +69,22 @@ var user = sequelize.define('users', {
   }
 });
 
+var country = sequelize.define('countries', {
+  name: {
+    Sequelize.STRING,
+    allowNull: false
+  }
+})
+
+var city = sequelize.define('cities', {
+  name: {
+    Sequelize.STRING,
+    allowNull: false
+  }
+})
+
+country.hasMany(city)
+city.belongsTo(country)
 
 
 // catch 404 and forward to error handler
