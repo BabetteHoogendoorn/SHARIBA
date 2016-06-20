@@ -1,17 +1,15 @@
-doctype html
-html
-	head
-		style
-			include ../style.css
-		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-		
+extends ./layout.jade
+
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+			
 
 	
-	body
-		#profile
-			h2 Hello #{name}
-			p
-			Welkom op je profiel
-				each cityTip in usersCityTips
-					h2 #{cityTip.title}
-					h3 ✏ #{cityTip.body}
+
+block navbar
+	#profile
+		h2 Hello #{name}
+		p
+		Welkom op je profiel
+			each cityTip in usersCityTips
+				h2 #{cityTip.title}
+				h3 ✏ #{cityTip.body}

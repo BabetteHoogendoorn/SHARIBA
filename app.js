@@ -17,18 +17,18 @@ var sequelize = new Sequelize('SHARIBA', process.env.POSTGRES_USER, null, {
   }
 });
 
+var app = express();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var profile = require('./routes/profile');
 var city = require('./routes/city');
-var log_in = require ('./routes/login');
+var login = require ('./routes/login');
 
-var app = express();
-//var app = module.exports = express();
+
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join('views'));
 app.set('view engine', 'jade');
 
 
@@ -36,11 +36,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static ('../public'));
+app.use(express.static ('./public'));
 
 app.use('/', routes);
+app.use('/login', login);
 app.use('/users', users);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
   secret: 'oh wow very secret much security',
@@ -87,6 +88,25 @@ var user = sequelize.define('users', {
   }
 });
 
+var city = sequelize.define('cities', {
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [1, 50]
+    }
+  },
+  country: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: [1, 55]
+    }
+  },
+});
+
 var cityTip = sequelize.define('cityTips', {
   title: {
     type: Sequelize.STRING,
@@ -108,12 +128,12 @@ var cityTip = sequelize.define('cityTips', {
 });
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// // catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
 // error handlers
 
