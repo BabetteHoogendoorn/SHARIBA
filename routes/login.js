@@ -3,8 +3,8 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 
 
-router.get('/login', function(request, response) {
-	response.render('login', {});
+router.get('/', function(request, response) {
+	response.render('login');
 });
 
 
