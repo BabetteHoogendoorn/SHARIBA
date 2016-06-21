@@ -3,12 +3,12 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='javascripts/jquery.min.js')
-    script(src='javascripts/searchjs.js')
+    script(src='../javascripts/jquery.min.js')
+    script(src='../javascripts/searchjs.js')
   body
       form(name="searchform", method="post", action="/search/searchResult")
         div.input
-            span.label 
+            span.label
             input(type="text", name="searchTyping")
             div#foundPlaces
         div.actions
