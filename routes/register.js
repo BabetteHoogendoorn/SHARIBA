@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt');
 
 
 router.get('/', function(req, res) {
@@ -8,23 +9,15 @@ router.get('/', function(req, res) {
 });
 
 
-
-router.post('/', bodyParser.urlencoded({extended: true}), function(request, response) {
-	console.log("kevin is gek")
-	console.log(request.body.name)
+router.post('/', function (req, res) {
 	user.create({
-		name: request.body.name,
-		email: request.body.email,
-		password: request.body.password
-	}).then(function(){
-		if (typeof(user) == 'undefined'){
-  			response.redirect('/login')
-  		} if (typeof(user) !== 'undefined') {
-  			response.redirect('/?message=' + encodeURIComponent("This user already exists"));
-		return;
-  		}
+		name: req.body.name,
+		email: req.body.email,
+		password: req.body.password
+	}).then(function () {
+		res.redirect('/login')
+	})
+})
 
-	});
-});
 
 module.exports = router;

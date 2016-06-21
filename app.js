@@ -30,7 +30,8 @@ var users = require('./routes/users');
 var profile = require('./routes/profile');
 var city = require('./routes/city');
 var login = require ('./routes/login');
-var register = require ('./routes/register')
+var register = require ('./routes/register');
+var logout = require ('./routes/logout')
 
 
 // view engine setup
@@ -48,6 +49,7 @@ app.use('/', routes);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/users', users);
+app.use('/logout', logout);
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
@@ -95,7 +97,7 @@ user = sequelize.define('users', {
   }
 });
 
-var city = sequelize.define('cities', {
+city = sequelize.define('cities', {
   city: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -114,7 +116,7 @@ var city = sequelize.define('cities', {
   },
 });
 
-var cityTip = sequelize.define('cityTips', {
+cityTip = sequelize.define('cityTips', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
