@@ -9,12 +9,18 @@ var pg = require('pg');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('SHARIBA', process.env.POSTGRES_USER, null, {
+var sequelize = new Sequelize('sarithbreedijk', 'sarithbreedijk', null, {
   host: 'localhost',
   dialect: 'postgres',
   define: {
     timestamps: false
   }
+});
+
+sequelize.sync({
+ force: true
+}).then(function() {
+ console.log('sync done')
 });
 
 var app = express();
@@ -52,7 +58,7 @@ app.use(session({
 
 
 
-var user = sequelize.define('users', {
+user = sequelize.define('users', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
