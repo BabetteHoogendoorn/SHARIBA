@@ -1,43 +1,44 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt');
+var session = require('express-session');
+var Sequelize = require('sequelize');
+
+
 
 
 router.get('/', function(request, response) {
-	response.render('login');
+	response.render('login', {title: 'Tipster Login'});
 });
 
 
-router.post('/login', bodyParser.urlencoded({
-	extended: true
-}), function(request, response) {
-	if (request.body.email.length === 0) {
-		response.redirect('/?message=' + encodeURIComponent("Please fill out your email address."));
+router.post('/', function (req, res){
+	if(req.body.name.length === 0) {
+		res.redirect('/?message=' + encodeURIComponent("Please fill out your email address."));
 		return;
 	}
 
-	if (request.body.password.length === 0) {
-		response.redirect('/?message=' + encodeURIComponent("Please fill out your password."));
+	if(req.body.password.length === 0) {
+		res.redirect('/?message=' + encodeURIComponent("Please fill out your password."));
 		return;
 	}
 
 	user.findOne({
 		where: {
-			email: request.body.email
+			name: req.body.name
 		}
-	}).then(function(user) {
-		var hashSecurePassword = request.body.password;
-		bcrypt.compare(hashSecurePassword, user.password.toString(), function(err, result) {
-			if (user !== null && request.body.password === user.password) {
-				request.session.user = user;
-				response.redirect('/');
-			} else {
-				response.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
-			}
-		}, function(error) {
-			response.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
-		});
+	}).then(function (user) {
+		if (user !== null && req.body.password === user.password) {
+			req.session.user = user;
+			res.redirect('/profile');
+		} else {
+			res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
+		}
+	}, function (error) {
+		res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
 	});
 });
+
 
 module.exports = router;

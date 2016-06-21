@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
-app.get('/', function(request, response) {
+router.get('/', function(request, response) {
 	request.session.destroy(function(error) {
 		if (error) {
 			throw error;
