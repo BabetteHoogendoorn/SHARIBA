@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,300);
-
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
 
 @font-face {
 	font-family: 'ElegantIcons';
@@ -164,7 +164,7 @@ h6 {
 .f-right {
     float: right;
 }
- .f-right a {
+.f-right a {
     display: inline-block;
     margin: 0px;
     padding: 0px 8px;
@@ -351,6 +351,8 @@ ul.navbar-nav li.active > .dropdown-menu > li.active > a{
 }
 .login-form {
   width: 350px;
+  font-family: 'Permanent Marker';
+  text-align: center;
   padding: 40px 30px;
   background: #eee;
   -moz-border-radius: 4px;
@@ -372,7 +374,7 @@ ul.navbar-nav li.active > .dropdown-menu > li.active > a{
   margin-bottom: 15px;
 }
 
-#loginform.form-control {
+.form-control {
   width: 50%;
   height: 50px;
   border: none;
@@ -409,9 +411,10 @@ ul.navbar-nav li.active > .dropdown-menu > li.active > a{
 
 .log-btn {
   background: #0AC986;
-  dispaly: inline-block;
+  display: inline-block;
   width: 100%;
   font-size: 16px;
+  font-family: 'Permanent Marker';
   height: 50px;
   color: #fff;
   text-decoration: none;
@@ -440,6 +443,14 @@ ul.navbar-nav li.active > .dropdown-menu > li.active > a{
   float: left;
 }
 
+.middle h2 {
+  text-decoration: none;
+  font-family: 'Permanent Marker';
+  color: black;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
 @-moz-keyframes wrong-log {
   0%, 100% {
     left: 0px;

@@ -24,7 +24,7 @@ var users = require('./routes/users');
 var profile = require('./routes/profile');
 var city = require('./routes/city');
 var login = require ('./routes/login');
-
+var register = require ('./routes/register')
 
 
 // view engine setup
@@ -40,6 +40,7 @@ app.use(express.static ('./public'));
 
 app.use('/', routes);
 app.use('/login', login);
+app.use('/register', register);
 app.use('/users', users);
 app.use(express.static(path.join(__dirname, '/public')));
 
