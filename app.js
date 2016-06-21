@@ -33,8 +33,6 @@ var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register')
 
-
-//console.log(search)
 var app = express();
 //var app = module.exports = express();
 
@@ -102,7 +100,7 @@ user = sequelize.define('users', {
 });
 
 
-var country = sequelize.define('countries', {
+country = sequelize.define('countries', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -113,7 +111,7 @@ var country = sequelize.define('countries', {
   }
 })
 
-var city = sequelize.define('cities', {
+city = sequelize.define('cities', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -128,7 +126,7 @@ country.hasMany(city)
 city.belongsTo(country)
 //city.hasMany(cityTip)
 
-var cityTip = sequelize.define('cityTips', {
+cityTip = sequelize.define('cityTips', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -151,7 +149,6 @@ var cityTip = sequelize.define('cityTips', {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  console.log(req)
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
