@@ -8,20 +8,7 @@ var fs = require('fs');
 var pg = require('pg');
 //var bcrypt = require('bcrypt');
 var session = require('express-session');
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('shariba', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-  host: 'localhost',
-  dialect: 'postgres',
-  define: {
-    timestamps: false
-  }
-});
 
-sequelize.sync({
- force: true
-}).then(function() {
- console.log('sync done')
-});
 
 var app = express();
 
@@ -33,8 +20,8 @@ var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register')
 
-var app = express();
-//var app = module.exports = express();
+var db = require('./modules/database.js')
+
 
 // view engine setup
 app.set('views', path.join('views'));
@@ -54,97 +41,13 @@ app.use('/users', users);
 app.use('/search', search);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(session({
   secret: 'oh wow very secret much security',
   resave: true,
   saveUninitialized: false
 }));
 
-
-
-user = sequelize.define('users', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [1, 50]
-    }
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [1, 55]
-    }
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [3, Infinity]
-    },
-  }
-}, {
-  freezeTableName: true,
-  instanceMethods: {
-    generateHash: function(password) {
-      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-    },
-    validPassword: function(password) {
-      return bcrypt.compareSync(password, this.password);
-    },
-  }
-});
-
-
-country = sequelize.define('countries', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [2, Infinity]
-    },
-  }
-})
-
-city = sequelize.define('cities', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [1, 55]
-    }
-  }
-})
-
-country.hasMany(city)
-city.belongsTo(country)
-//city.hasMany(cityTip)
-
-cityTip = sequelize.define('cityTips', {
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [3, Infinity]
-    },
-  },
-  body: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [3, Infinity]
-    },
-  },
-  user_id: Sequelize.INTEGER
-});
 
 
 // catch 404 and forward to error handler
