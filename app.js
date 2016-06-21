@@ -25,6 +25,8 @@ var city = require('./routes/city');
 var log_in = require ('./routes/login');
 var search = require ('./routes/search')
 
+
+//console.log(search)
 var app = express();
 //var app = module.exports = express();
 
@@ -41,6 +43,7 @@ app.use(express.static ('../public'));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/search', search);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
@@ -139,6 +142,7 @@ var cityTip = sequelize.define('cityTips', {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log(req)
   var err = new Error('Not Found');
   err.status = 404;
   next(err);

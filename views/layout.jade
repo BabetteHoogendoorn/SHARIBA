@@ -3,8 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='javascripts/jquery.min.js')
+    script(src='javascripts/searchjs.js')
   body
-      form(name="searchform", method="post", action="/searchResult")
+      form(name="searchform", method="post", action="/search/searchResult")
         div.input
             span.label 
             input(type="text", name="searchTyping")
