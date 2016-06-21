@@ -3,12 +3,15 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 
 
-router.get('/', function(request, response) {
-	response.render('register');
+router.get('/', function(req, res) {
+  res.render('register', {title: 'Tipster Register'})
 });
 
 
+
 router.post('/', bodyParser.urlencoded({extended: true}), function(request, response) {
+	console.log("kevin is gek")
+	console.log(request.body.name)
 	user.create({
 		name: request.body.name,
 		email: request.body.email,
