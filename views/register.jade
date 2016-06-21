@@ -21,10 +21,13 @@ block content
 		p you are logged in already!
 	else
 		.login-form
-			h1 Tipster
+			h1 Register
+			.form-group
+				input#name.form-control(type='text', placeholder='Name')
+				i.fa.fa-user
 			.form-group
 				input#email.form-control(type='text', placeholder='Email')
-				i.fa.fa-email
+				i.fa.fa-user		
 			.form-group.log-status
 				input#password.form-control(type='password', placeholder='Password')
 				i.fa.fa-lock
@@ -32,4 +35,3 @@ block content
 				span.alert Invalid Credentials
 				button.log-btn(type='button') Log in
 	
-
