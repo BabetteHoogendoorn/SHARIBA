@@ -13,6 +13,8 @@
     "express": "~4.13.1",
     "express-session": "^1.13.0",
     "jade": "~1.11.0",
+    "jade-bootstrap": "^1.0.6",
+    "model": "^6.0.1",
     "morgan": "~1.6.1",
     "pg": "^5.1.0",
     "sequelize": "^3.23.3",

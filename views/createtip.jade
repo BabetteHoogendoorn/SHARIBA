@@ -1,29 +1,31 @@
-doctype html
-html
-	head
-		style
-			include ../style.css
-		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-		script.
-			$(document).ready(function () {
-				$('#submit').click(function(event) {
-					if($('#title').val().trim().length === 0 || $('#body').val().trim().length === 0) {
-						event.preventDefault();
-						$('#error-message').html("No proper post is found!");
-					}
+extends ./layout.jade
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+			script.
+				$(document).ready(function () {
+					$('#submit').click(function(event) {
+						if($('#title').val().trim().length === 0 || $('#body').val().trim().length === 0) {
+							event.preventDefault();
+							$('#error-message').html("No proper post is found!");
+						}
+					});
 				});
-			});
-	body
-		#createtip
-			if user
-				a(href='/profile') view profile
+
+block navbar
+		
+		
+block content
+
+body	
+	#createtip
+		if user
+			a(href='/profile') view profile
+			br
+			a(href='/logout') log out
+		else
+			form(action='/createtip' method='post')
+				label Your title
+				input#title(name='title' required)
 				br
-				a(href='/logout') log out
-			else
-				form(action='/createtip' method='post')
-					label Your title
-					input#title(name='title' required)
-					br
-					label Your text 
-					input#body(name='body' required)
-					input(type='submit' value='login' id='submit')
+				label Your text 
+				input#body(name='body' required)
+				input(type='submit' value='login' id='submit')

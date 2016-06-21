@@ -1,27 +1,31 @@
-doctype html
-html
-	head
-		link(rel='stylesheet', href='/stylesheets/style.css')
-		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-		script.
-			$(document).ready(function () {
-				$('#submit').click(function(event) {
-					if($('#email').val().trim().length === 0 || $('#password').val().trim().length === 0) {
-						event.preventDefault();
-						$('#error-message').html("Your username or password is empty.");
-					}
-				});
-			});
-	body
-		#main
-			if user
-				a(href='/profile') view profile
+extends ./layout.jade
+
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+			script.
+				 $(document).ready(function(){
+					$('.log-btn').click(function(){
+					$('.log-status').addClass('wrong-entry');
+					$('.alert').fadeIn(500);
+					setTimeout( "$('.alert').fadeOut(1500);",3000 );
+					});
+						$('.form-control').keypress(function(){
+						$('.log-status').removeClass('wrong-entry');
+					});
+					});
+			
+
+block content
+	.middle 
+		.login-form
+			h1 Tipster
+			.form-group
+				input#email.form-control(type='text', placeholder='Email', name='email')
+				i.fa.fa-email
+			.form-group.log-status
+				input#password.form-control(type='password', placeholder='Password', name='password')
+				i.fa.fa-lock
 				br
-				a(href='/logout') log out
-			else
-				form(action='/login' method='post')
-					label email
-					input#email(name='email' required)
-					label password
-					input#password(type="password" name='password' required)
-					input(type='submit' value='login' id='submit')
+				span.alert Invalid Credentials
+				button.log-btn(type='button') Log in
+	
+
