@@ -4,7 +4,8 @@ head
     include ../assets/css/bootstrap.min.css
 
    title= title
-       link(rel='stylesheet', href='/stylesheets/style.css')      
+    script(src='javascripts/jquery.min.js')
+    script(src='javascripts/searchjs.js')
 
   body(data-spy='scroll', data-target='.navigation')
    block navbar
@@ -58,6 +59,7 @@ head
                       div#foundPlaces
                   div.actions
                       input(type="submit", value="Search")
+
 
     block content
      h1 Tipster

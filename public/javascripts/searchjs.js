@@ -1,4 +1,4 @@
-var fireRequest = true
+var fireRequest = true;
 
 $ ( document ).ready( function () {
 	console.log('dom is ready')
@@ -10,7 +10,7 @@ $ ( document ).ready( function () {
 		$('#foundPlaces').empty()
 			if(fireRequest) {
 				fireRequest = false
-				$.post ('/searchResult', inputLetters, function(data){
+				$.post ('search/ajaxSearch', inputLetters, function(data){
 
 					for (person in data){
 						console.log(data[person].firstname)

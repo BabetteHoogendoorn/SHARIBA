@@ -33,6 +33,9 @@ var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register')
 
+var app = express();
+//var app = module.exports = express();
+
 // view engine setup
 app.set('views', path.join('views'));
 app.set('view engine', 'jade');
@@ -48,7 +51,8 @@ app.use('/', routes);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/users', users);
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/search', search);
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'oh wow very secret much security',
@@ -96,7 +100,7 @@ user = sequelize.define('users', {
 });
 
 
-var country = sequelize.define('countries', {
+country = sequelize.define('countries', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -107,7 +111,7 @@ var country = sequelize.define('countries', {
   }
 })
 
-var city = sequelize.define('cities', {
+city = sequelize.define('cities', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -122,7 +126,7 @@ country.hasMany(city)
 city.belongsTo(country)
 //city.hasMany(cityTip)
 
-var cityTip = sequelize.define('cityTips', {
+cityTip = sequelize.define('cityTips', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
