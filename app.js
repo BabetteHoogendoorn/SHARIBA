@@ -18,7 +18,8 @@ var profile = require('./routes/profile');
 var city = require('./routes/city');
 var search = require ('./routes/search')
 var login = require ('./routes/login');
-var register = require ('./routes/register')
+var register = require ('./routes/register');
+var logout = require ('./routes/logout')
 
 var db = require('./modules/database.js')
 
@@ -39,9 +40,8 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);
-app.use(express.static(path.join(__dirname, 'public')));
-
-
+app.use('/logout', logout);
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({
   secret: 'oh wow very secret much security',
   resave: true,
@@ -49,13 +49,6 @@ app.use(session({
 }));
 
 
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
