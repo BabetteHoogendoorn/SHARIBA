@@ -47,6 +47,7 @@ sequelize.sync({
             body: 'I really recommend it',
             user_id: 2
           })
+          })
         }),
         country.create({
           name: 'Belgium'
@@ -61,9 +62,61 @@ sequelize.sync({
               user_id: 3
             })
           })
-        })
+        }),
+        })country.create({
+          name: 'Germany'
+        }).then(function(thecountry){
+          city.create({
+            name:'Berlin',
+            countryId: thecountry.id}
+            ),
+          city.create({
+            name:'Köln',
+            countryId: thecountry.id}
+            ).then(function(thecity){
+              cityTip.create({
+                title:'Top spot',
+                body:'This place is awesome!',
+                user_id: 4
+              })
+            })
+          })
       })
     ])
   })
 
 module.exports = router;
+
+
+
+
+
+  Promise.all([
+    country.create({
+      name: 'Netherlands'
+    }).then(function(thecountry){
+      city.create({
+        name:'Amsterdam',
+        countryId: thecountry.id}
+        ),
+      city.create({
+        name:'Eindhoven',
+        countryId: thecountry.id}
+        ).then(function(thecity){
+          cityTip.create({
+            title:'Top spot',
+            body:'This place is awesome!',
+            user_id: 1
+          })
+        })
+      }),
+    country.create({
+      name:'Austria'
+    }).then(function(thecountry){
+     city.create({
+      name:'Salzburg',
+      countryId: thecountry.id
+    })
+   })
+    ])
+})
