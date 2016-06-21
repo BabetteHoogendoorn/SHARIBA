@@ -24,6 +24,7 @@ var logout = require ('./routes/logout')
 var db = require('./modules/database.js')
 
 
+
 // view engine setup
 app.set('views', path.join('views'));
 app.set('view engine', 'jade');
