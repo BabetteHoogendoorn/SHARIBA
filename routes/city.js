@@ -41,11 +41,25 @@ sequelize.sync({
         city.create({
           name: 'Vienna',
           countryId: thecountry.id}
-        ).then(function(thecity){
+        }).then(function(thecity){
           cityTip.create({
             title: 'This is the place to be',
             body: 'I really recommend it',
             user_id: 2
+          })
+        }),
+        country.create({
+          name: 'Belgium'
+        }).then(function(thecountry){
+          city.create({
+            name: 'Brussel'
+            countryId: thecountry.id}
+          })then(function(thecity){
+            cityTip.create({
+              title: 'look at this guy',
+              body: 'he is peeing and wears funny clothes',
+              user_id: 3
+            })
           })
         })
       })
