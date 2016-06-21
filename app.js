@@ -33,6 +33,11 @@ var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register')
 
+
+//console.log(search)
+var app = express();
+//var app = module.exports = express();
+
 // view engine setup
 app.set('views', path.join('views'));
 app.set('view engine', 'jade');
@@ -48,7 +53,8 @@ app.use('/', routes);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/users', users);
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/search', search);
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'oh wow very secret much security',
@@ -145,6 +151,7 @@ var cityTip = sequelize.define('cityTips', {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log(req)
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
