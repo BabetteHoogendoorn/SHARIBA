@@ -3,29 +3,30 @@ extends ./layout.jade
 script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
 			script.
 				 $(document).ready(function(){
-					$('.log-btn').click(function(){
-					$('.log-status').addClass('wrong-entry');
-					$('.alert').fadeIn(500);
-					setTimeout( "$('.alert').fadeOut(1500);",3000 );
-					});
-						$('.form-control').keypress(function(){
-						$('.log-status').removeClass('wrong-entry');
-					});
-					});
+					$('.log-btn').click(function(event) {
+						if($('#email').val().trim().length === 0 || $('#password').val().trim().length === 0 ) {
+						event.preventDefault();
+						$('#error-message').html("Your username, email or password is empty.");
+						}
+						});
+						});
 			
 
 block content
 	.middle 
+		h2
+
 		.login-form
 			h1 Tipster
-			.form-group
-				input#email.form-control(type='text', placeholder='Email', name='email')
-				i.fa.fa-email
-			.form-group.log-status
-				input#password.form-control(type='password', placeholder='Password', name='password')
-				i.fa.fa-lock
-				br
-				span.alert Invalid Credentials
-				button.log-btn(type='button') Log in
+			form(action='/login' method='post')
+				.form-group
+					input#name.form-control(type='text', placeholder='Username', name='name')
+					i.fa.fa-email
+				.form-group.log-status
+					input#password.form-control(type='password', placeholder='Password', name='password')
+					i.fa.fa-lock
+					br
+					span.alert Invalid Credentials
+					button.log-btn(type='submit') Log in
 	
 
