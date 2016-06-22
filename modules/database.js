@@ -8,6 +8,7 @@ var db = {
 }
 
 //set up sql
+var pg = require('pg');
 var Sequelize = require('sequelize');
 db.conn = new Sequelize('shariba', process.env.POSTGRES_USER, 
 	process.env.POSTGRES_PASSWORD, {

@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 var Sequelize = require('sequelize');
-
-
+var db = require('../modules/database.js');
+var pg = require('pg');
 
 
 router.get('/', function(request, response) {
@@ -24,13 +24,13 @@ router.post('/', function (req, res){
 		return;
 	}
 
-	user.findOne({
+	db.user.findOne({
 		where: {
 			name: req.body.name
 		}
 	}).then(function (user) {
-		if (user !== null && req.body.password === user.password) {
-			req.session.user = user;
+		if (db.user !== null && req.body.password === db.user.password) {
+			req.session.db.user = db.user;
 			res.redirect('/profile');
 		} else {
 			res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
