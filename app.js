@@ -20,7 +20,7 @@ var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register')
 
-var db = require('./modules/database.js')
+var db = require('./modules/database')
 
 
 // view engine setup
@@ -89,36 +89,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-// sequelize.sync().then(function(){
-//   Promise.all([
-//     country.create({
-//       name: 'Netherlands'
-//     }).then(function(thecountry){
-//       city.create({
-//         name:'Amsterdam',
-//         countryId: thecountry.id}
-//         ),
-//       city.create({
-//         name:'Eindhoven',
-//         countryId: thecountry.id}
-//         ).then(function(thecity){
-//           cityTip.create({
-//             title:'Top spot',
-//             body:'This place is awesome!',
-//             user_id: 1
-//           })
-//         })
-//       }),
-//     country.create({
-//       name:'Austria'
-//     }).then(function(thecountry){
-//      city.create({
-//       name:'Salzburg',
-//       countryId: thecountry.id
-//     })
-//    })
-//     ])
-// })
 
 module.exports = app;

@@ -1,4 +1,8 @@
+var pg = require('pg');
+
+
 // container object
+
 var db = {
 	mod: {}
 }
@@ -52,7 +56,7 @@ user = db.conn.define('users', {
   }
 });
 
-country = db.conn.define('countries', {
+db.country = db.conn.define('country', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -63,7 +67,7 @@ country = db.conn.define('countries', {
   }
 })
 
-city = db.conn.define('cities', {
+db.city = db.conn.define('city', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -74,7 +78,7 @@ city = db.conn.define('cities', {
   }
 })
 
-cityTip = db.conn.define('cityTips', {
+db.cityTip = db.conn.define('cityTip', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -96,15 +100,43 @@ cityTip = db.conn.define('cityTips', {
 
 
 //establish relationships
-country.hasMany(city)
-city.belongsTo(country)
+db.country.hasMany(db.city)
+db.city.belongsTo(db.country)
 //city.hasMany(cityTip)
 
 //synchronize with database
 db.conn.sync({
- force: false
+ force: true
 }).then(function() {
  console.log('sync done')
+ Promise.all([
+    db.country.create({
+      name: 'Netherlands'
+    }).then(function(thecountry){
+      db.city.create({
+        name:'Amsterdam',
+        countryId: thecountry.id}
+        ),
+      db.city.create({
+        name:'Eindhoven',
+        countryId: thecountry.id}
+        ).then(function(thecity){
+          db.cityTip.create({
+            title:'Top spot',
+            body:'This place is awesome!',
+            user_id: 1
+          })
+        })
+      }),
+    db.country.create({
+      name:'Austria'
+    }).then(function(thecountry){
+     db.city.create({
+      name:'Salzburg',
+      countryId: thecountry.id
+    })
+   })
+    ])
 });
 
 module.exports = db
