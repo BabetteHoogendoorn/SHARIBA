@@ -116,24 +116,14 @@ db.cityTip.hasMany(db.user)
 
 db.conn.sync({force: true
 }).then(function(){
-  Promise.all([
-    country.create({
-      name: 'Austria'
-    }).then(function(thecountry){
-      city.create({
-        name:'Vienna',
-        countryId: thecountry.id
+	Promise.all([
+		country.create({
+			name: 'Austria'
+		}).then(function(thecountry){
+			city.create({
+				name:'Vienna',
+				countryId: thecountry.id
 			})
-      // city.create({
-      //   name:'Eindhoven',
-      //   countryId: thecountry.id}
-      //   ).then(function(thecity){
-      //     cityTip.create({
-      //       title:'Top spot',
-      //       body:'This place is awesome!',
-      //       user_id: 1
-      //     })
-      //   })
 		}),
 		country.create({
 			name:'Belgium'
@@ -141,6 +131,12 @@ db.conn.sync({force: true
 			city.create({
 				name:'Brussels',
 				countryId: thecountry.id
+			}).then(function(thecity){
+				cityTip.create({
+					title:'This little guy',
+					body:'He pees in a fountain',
+					user_id: 2
+				})
 			})
 		}),
 		country.create({
@@ -173,6 +169,12 @@ db.conn.sync({force: true
 			city.create({
 				name:'Prague',
 				countryId: thecountry.id
+			})then(function(thecity){
+				cityTip.create({
+					title:'drinks at this bar',
+					body:'Come here for the cheapest beers',
+					user_id: 3
+				})
 			})
 		}),
 		country.create({
@@ -285,6 +287,17 @@ db.conn.sync({force: true
 			city.create({
 				name:'Amsterdam',
 				countryId: thecountry.id
+			}).then(function(anothercity) {
+				city.create({
+					name:'Eindhoven',
+					countryId: thecountry.id
+				}).then(function(thecity){
+					cityTip.create({
+						title:'Top spot',
+						body:'This place is awesome!',
+						user_id: 1
+					})
+				})
 			})
 		}),
 		country.create({
@@ -357,8 +370,14 @@ db.conn.sync({force: true
 			city.create({
 				name:'Vatican City',
 				countryId: thecountry.id
+			})then(function(thecity){
+				cityTip.create({
+					title:'This place is holy',
+					body:'I have seen the pope, such a nice guy!',
+					user_id: 4
+				})
 			})
-		}),
+		})
 	])
 })
 
