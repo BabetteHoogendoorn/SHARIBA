@@ -20,7 +20,7 @@ db.conn = new Sequelize('shariba', process.env.POSTGRES_USER,
 });
 
 //Models
-user = db.conn.define('users', {
+db.user = db.conn.define('users', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,

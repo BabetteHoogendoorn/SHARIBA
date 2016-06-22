@@ -1,18 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var pg = require('pg');
+var Sequelize = require('sequelize');
+var session = require('express-session');
+var db = require('../modules/database');
 
-router.get('/profile', function(request, response) {
+router.use(session({
+  secret: 'oh wow very secret much security',
+  resave: true,
+  saveUninitialized: false
+}));
+
+router.get('/', function(req, res) {
+  res.render('register', {title: 'Tipster Profile'})
 	var user = request.session.user;
 	if (user === undefined) {
 		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
 	} else {
 		var ID = request.session.user.id;
-		cityTip.findAll({
+		db.cityTip.findAll({
 			where: {
 				user_id: ID,
 			}
 		}).then(function(cityTips) {
-			var Data = cityTip.map(function(profiletips) {
+			var Data = db.cityTip.map(function(profiletips) {
 				return {
 					title: profiletips.dataValues.title,
 					body: profiletips.dataValues.body,

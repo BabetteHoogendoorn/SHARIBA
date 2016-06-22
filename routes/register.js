@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt');
 var db = require('../modules/database');
 var pg = require('pg');
 var Sequelize = require('sequelize');
+var session = require('express-session');
 
 
 router.get('/', function(req, res) {
@@ -12,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 
-router.post('/', function (req, res) {
+router.post('/register', function (req, res) {
 	db.user.create({
 		name: req.body.name,
 		email: req.body.email,
