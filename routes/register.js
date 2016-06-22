@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 
 
 router.get('/', function(req, res) {

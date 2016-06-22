@@ -12,10 +12,10 @@ $ ( document ).ready( function () {
 				fireRequest = false
 				$.post ('search/ajaxSearch', inputLetters, function(data){
 
-					for (person in data){
-						console.log(data[person].firstname)
-						$ ( '#foundPlaces' ).append( '<div class="newCity">' + data[person].firstname + " " + 
-							data[person].lastname + '</div>' )
+					for (place in data){
+						console.log(data[place].name)
+						$ ( '#foundPlaces' ).append( '<div class="newCity">' + data[place].name + " " + 
+							data[place].country.name + '</div>' )
 					}
 					$ ( '.newCity' ) .click( function() { 
 						$('#searchform').val($(this).text()) 

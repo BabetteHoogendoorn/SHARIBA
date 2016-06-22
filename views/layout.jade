@@ -2,10 +2,10 @@ head
    style
     include ../public/stylesheets/style.css
     include ../assets/css/bootstrap.min.css
+   script(src='javascripts/jquery.min.js')
+   script(src='javascripts/searchjs.js')
 
    title= title
-    script(src='javascripts/jquery.min.js')
-    script(src='javascripts/searchjs.js')
 
   body(data-spy='scroll', data-target='.navigation')
    block navbar
@@ -63,4 +63,4 @@ head
 
 
     block content
-     h1 Tipster
+
