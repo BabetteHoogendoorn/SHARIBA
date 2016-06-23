@@ -105,186 +105,186 @@ db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
 
 db.conn.sync({force: true
-})then.(function() {
+}).then(function() {
 	console.log('sync done')
 }).then(function(){
 	Promise.all([
-		country.create({
+		db.country.create({
 			name: 'Austria'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Vienna',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Belgium'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Brussels',
 				countryId: thecountry.id
 			}).then(function(thecity){
-				cityTip.create({
+				db.cityTip.create({
 					title:'This little guy',
 					body:'He pees in a fountain',
 					user_id: 2
 				})
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Bulgaria'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Sofia',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Croatia'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Zagreb',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Cyprus Republic'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Nicosia',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Czech Republic'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Prague',
 				countryId: thecountry.id
-			})then(function(thecity){
-				cityTip.create({
+			}).then(function(thecity){
+				db.cityTip.create({
 					title:'drinks at this bar',
 					body:'Come here for the cheapest beers',
 					user_id: 3
 				})
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Denmark'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Copenhagen',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Estonia'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Tallinn',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Finland'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Helsinki',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'France'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Paris',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Germany'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Berlin',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Greece'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Athens',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Hungary'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Budapest',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Ireland'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Dublin',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Italy'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Rome',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Latvia'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Riga',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Lithuania'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Vilnius',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Luxembourg'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Luxembourg',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Malta'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Valletta',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Netherlands'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Amsterdam',
 				countryId: thecountry.id
 			}).then(function(anothercity) {
-				city.create({
+				db.city.create({
 					name:'Eindhoven',
 					countryId: thecountry.id
 				}).then(function(thecity){
-					cityTip.create({
+					db.cityTip.create({
 						title:'Top spot',
 						body:'This place is awesome!',
 						user_id: 1
@@ -292,81 +292,81 @@ db.conn.sync({force: true
 				})
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Poland'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Warsaw',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Portugal'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Lisbon',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Romania'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Bucharest',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Slovakia'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Bratislava',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Slovena'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Ljubljana',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Spain'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Madrid',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Sweden'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Stockholm',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'United Kingdom'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'London',
 				countryId: thecountry.id
 			})
 		}),
-		country.create({
+		db.country.create({
 			name:'Vatican City'
 		}).then(function(thecountry){
-			city.create({
+			db.city.create({
 				name:'Vatican City',
 				countryId: thecountry.id
-			})then(function(thecity){
-				cityTip.create({
+			}).then(function(thecity){
+				db.cityTip.create({
 					title:'This place is holy',
 					body:'I have seen the pope, such a nice guy!',
-					user_id: 4
+					user_countryId: 4
 				})
 			})
 		})
