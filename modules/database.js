@@ -103,6 +103,8 @@ db.cityTip = db.conn.define('cityTip', {
 //establish relationships
 db.country.hasMany(db.city)
 db.city.belongsTo(db.country)
+db.user.hasMany(db.cityTip)
+db.cityTip.hasMany(db.user)
 //city.hasMany(cityTip)
 
 //synchronize with database
