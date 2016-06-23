@@ -11,8 +11,7 @@ router.use(session({
   saveUninitialized: false
 }));
 
-router.get('/', function(req, res) {
-  res.render('register', {title: 'Tipster Profile'})
+router.get('/', function(request, response) {
 	var user = request.session.user;
 	if (user === undefined) {
 		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
@@ -23,7 +22,7 @@ router.get('/', function(req, res) {
 				user_id: ID,
 			}
 		}).then(function(cityTips) {
-			var Data = db.cityTip.map(function(profiletips) {
+			var Data = cityTip.map(function(profiletips) {
 				return {
 					title: profiletips.dataValues.title,
 					body: profiletips.dataValues.body,
@@ -37,6 +36,7 @@ router.get('/', function(req, res) {
 			console.log(usersCityTips);
 			//console.log(allComments);
 			response.render('profile', {
+				title: 'Tipster Profile',
 				usersCityTips: usersCityTips,
 				name: request.session.user.name
 			});

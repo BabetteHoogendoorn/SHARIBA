@@ -50,12 +50,12 @@ head
                   li
                     a(href='/favorites') Favorites
                   li
-                a(href='/logout') Logout
+                    a(href='/logout') Logout
               li
-                form(name="searchform", method="post", action="/search/searchResult")
+                form.searchcity(name="searchform", method="post", action="/search/searchResult")
                   div.input
-                      span.label 
-                      input(type="text", name="searchTyping")
+                    span.label 
+                      input(type="text", name="searchTyping", placeholder='Search City or Country')
                       div#foundPlaces
                   div.actions
                       input(type="submit", value="Search")

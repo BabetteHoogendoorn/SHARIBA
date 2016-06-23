@@ -38,6 +38,7 @@ app.use(express.static ('./public'));
 
 app.use('/', routes);
 app.use('/login', login);
+app.use('/profile', profile);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);

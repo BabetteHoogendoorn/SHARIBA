@@ -6,10 +6,8 @@ script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
 	
 
 block navbar
-	#profile
 		h2 Hello #{name}
-		p
-		Welkom op je profiel
-			each cityTip in usersCityTips
+		p Welkom op je profiel
+			each db.cityTip in usersCityTips
 				h2 #{cityTip.title}
 				h3 ✏ #{cityTip.body}
