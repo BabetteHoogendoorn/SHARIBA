@@ -6,24 +6,17 @@ html
   head
   h1 List of cities and cityTips!
   body
-    each city in cities
-      city #{country.city}
+    each country in db.country
+      country #{country.name}
       h2= country.name
+    each city in db.country.city
+      city #{city.name}
       h3= country.city.name
-      p country.city.cityTip
+    each user in db.user
+      user #{cityTip.user.name}
+      h4= user.name 
+    each tip in db.cityTips  
+      p #{city.cityTip.title}
+      p #{city.cityTip.body}
       br
-      p To read just this post click 
-        a(href="/post/#{post.id}") here!
-      p Comments:
-      each comm in post.comments
-        p #{comm.user.name} says #{comm.body}
-
-
-doctype html
-html
-  body
-    form
-      | Find city:
-      br
-      input(type='text', name='firstname')
-      br
+      

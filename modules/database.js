@@ -1,8 +1,5 @@
 var pg = require('pg');
-
-
 // container object
-
 var db = {
 	mod: {}
 }
@@ -104,16 +101,8 @@ db.cityTip = db.conn.define('cityTip', {
 db.country.hasMany(db.city)
 db.city.belongsTo(db.country)
 db.user.hasMany(db.cityTip)
-db.cityTip.hasMany(db.user)
-//city.hasMany(cityTip)
-
-
-//synchronize with database
-// db.conn.sync({
-//  force: true
-// }).then(function() {
-//  console.log('sync done')
-// });
+db.cityTip.belongsTo(db.user)
+db.city.hasMany(db.cityTip)
 
 db.conn.sync({force: true
 })then.(function() {

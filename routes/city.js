@@ -15,13 +15,13 @@ router.get('/city', function(req, res) {
   Promise.all([
     country.findAll({
       include: [
-        {model: country},
-        {model: city,
-        include: {model: cityTip}}
+        {model: db.country},
+        {model: deb.city,
+        include: {model: db.cityTip}}
       ]
     })then.(function(list) {
       response.render('city', {
-        cities: list
+        country: list
       })
     })
   })
