@@ -17,8 +17,9 @@ router.get('/city', function(req, res) {
       include: [
         {model: db.country},
         {model: deb.city,
-        include: {model: db.cityTip}}
-      ]
+        include: {model: db.cityTip,
+          include: {model: db.user}
+        }]
     })then.(function(list) {
       response.render('city', {
         country: list
