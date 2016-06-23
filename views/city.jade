@@ -2,6 +2,25 @@ extends ./layout.jade
 
 doctype html
 html
+  title Cities
+  head
+  h1 List of cities and cityTips!
+  body
+    each city in cities
+      city #{country.city}
+      h2= country.name
+      h3= country.city.name
+      p country.city.cityTip
+      br
+      p To read just this post click 
+        a(href="/post/#{post.id}") here!
+      p Comments:
+      each comm in post.comments
+        p #{comm.user.name} says #{comm.body}
+
+
+doctype html
+html
   body
     form
       | Find city:

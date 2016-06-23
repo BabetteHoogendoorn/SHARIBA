@@ -98,7 +98,7 @@ cityTip = db.conn.define('cityTips', {
 //establish relationships
 country.hasMany(city)
 city.belongsTo(country)
-//city.hasMany(cityTip)
+city.hasMany(cityTip)
 
 //synchronize with database
 // db.conn.sync({
@@ -108,6 +108,8 @@ city.belongsTo(country)
 // });
 
 db.conn.sync({force: true
+})then.(function() {
+	console.log('sync done')
 }).then(function(){
 	Promise.all([
 		country.create({
