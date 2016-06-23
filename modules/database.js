@@ -107,6 +107,7 @@ db.user.hasMany(db.cityTip)
 db.cityTip.hasMany(db.user)
 //city.hasMany(cityTip)
 
+
 //synchronize with database
 // db.conn.sync({
 //  force: true
@@ -115,6 +116,8 @@ db.cityTip.hasMany(db.user)
 // });
 
 db.conn.sync({force: true
+})then.(function() {
+	console.log('sync done')
 }).then(function(){
 	Promise.all([
 		country.create({
