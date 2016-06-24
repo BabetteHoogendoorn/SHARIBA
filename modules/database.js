@@ -107,6 +107,7 @@ db.user.hasMany(db.cityTip)
 db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
 
+
 //synchronize with database
 db.conn.sync({force: true
 }).then(function() {
