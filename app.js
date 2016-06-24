@@ -19,7 +19,8 @@ var city = require('./routes/city');
 var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register');
-var logout = require ('./routes/logout')
+var logout = require ('./routes/logout');
+var citytip = require ('./routes/citytip');
 
 var db = require('./modules/database')
 

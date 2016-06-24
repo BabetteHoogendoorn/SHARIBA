@@ -53,9 +53,7 @@ router.post('/searchResult', function(req, res){
 				storePlaces.push(allcities)
 			}
 		}
-		res.render('citytip', {
-			foundCities: storePlaces
-		})
+		res.redirect('./citytip/cityTip')
 	})
 })
 
