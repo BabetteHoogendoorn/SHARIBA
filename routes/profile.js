@@ -22,7 +22,7 @@ router.get('/', function(request, response) {
 				user_id: ID,
 			}
 		}).then(function(cityTips) {
-			var Data = cityTip.map(function(profiletips) {
+			var Data = cityTips.map(function(profiletips) {
 				return {
 					title: profiletips.dataValues.title,
 					body: profiletips.dataValues.body,
