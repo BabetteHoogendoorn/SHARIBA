@@ -107,7 +107,6 @@ db.city.hasMany(db.cityTip)
 
 db.conn.sync({force: true
 }).then(function() {
-
 	console.log('sync done')
 }).then(function(){
 	Promise.all([
@@ -121,8 +120,8 @@ db.conn.sync({force: true
     }).then(function(thecountry){
       db.city.create({
         name:'Amsterdam',
-        countryId: thecountry.id}
-        ),
+        countryId: thecountry.id
+      }),
       db.city.create({
         name:'Eindhoven',
         countryId: thecountry.id}
@@ -141,15 +140,8 @@ db.conn.sync({force: true
       name:'Salzburg',
       countryId: thecountry.id
         })
-   })
-    
-
-db.conn.sync({force: true
-})then.(function() {
-	console.log('sync done')
-}).then(function(){
-	Promise.all([
-		country.create({
+   }),
+		db.country.create({
 			name: 'Austria'
 		}).then(function(thecountry){
 			city.create({
@@ -170,7 +162,7 @@ db.conn.sync({force: true
 					user_id: 2
 				})
 			})
-		}),
+    }),
 
 		db.country.create({
 			name:'Bulgaria'
@@ -195,7 +187,8 @@ db.conn.sync({force: true
 			name:'Cyprus Republic'
 		}).then(function(thecountry){
 				name:'Nicosia',
-				countryId: thecountry.id
+        countryId: thecountry.id
+			
 			})
 		}),
 		db.country.create({
