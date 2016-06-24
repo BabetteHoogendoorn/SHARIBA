@@ -9,7 +9,6 @@ var Sequelize = require('sequelize');
 router.set( 'views', 'views' )
 router.set( 'view engine', 'pug' )
 
-
 /* GET city page. */
 router.get('/city', function(req, res) {
   Promise.all([
