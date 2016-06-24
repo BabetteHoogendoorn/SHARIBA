@@ -11,6 +11,7 @@ var session = require('express-session');
 
 
 var app = express();
+console.log('hello')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
