@@ -7,3 +7,5 @@ block content
     each country in countries
        country #{country.name}
        h2=country.name
+            each city in country.cities
+                h2= city.name

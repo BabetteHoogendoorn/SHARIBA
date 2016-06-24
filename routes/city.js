@@ -15,22 +15,18 @@ var Sequelize = require('sequelize');
 router.get('/', function(req, res) {
   // Promise.all([
     db.country.findAll({
-      
+
           include: [
-            {model: db.city,
-              include: [
-                {model: db.cityTip,
-                  include: [
-                    {model: db.user
-                    }]
-                  }]
+            {model: db.city
                 }]
             })
     //         ,
     //
     // ])
     .then(function(list) {
-        console.log(list)
+        console.log(list[0])
+        
+    
       res.render('city'
       , {
         countries: list
