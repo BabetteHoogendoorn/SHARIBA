@@ -31,11 +31,11 @@ router.post('/ajaxSearch', function(req, res){
 
 
 router.post('/searchResult', function(req, res){
-	var storePlaces = [];
 	var searchTyping = req.body.searchTyping.toLowerCase()
 	
 	db.city.findAll({
-		include: [db.country]
+		include: [db.country], 
+		include: [db.cityTip]
 	}).then(function(allcities) {
 
 		for(var i=0; i<allcities.length; i++ ){
@@ -50,10 +50,11 @@ router.post('/searchResult', function(req, res){
 			}
 
 			if( inputCity != -1 ) {
-				storePlaces.push(allcities)
+				res.render('citytip', {
+					city: allcities[i]
+				})
 			}
 		}
-		res.redirect('./citytip/cityTip')
 	})
 })
 
