@@ -39,6 +39,7 @@ app.use(express.static ('./public'));
 app.use('/', routes);
 app.use('/login', login);
 app.use('/profile', profile);
+app.use('/city', city);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);
@@ -83,6 +84,9 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+
 
 
 module.exports = app;

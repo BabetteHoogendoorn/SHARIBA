@@ -9,12 +9,13 @@ var Sequelize = require('sequelize');
 // router.set( 'views', 'views' )
 // router.set( 'view engine', 'pug' )
 
+
+
 /* GET city page. */
-router.get('/city', function(req, res) {
+router.get('/', function(req, res) {
   // Promise.all([
     db.country.findAll({
-      include: [
-        {model: db.country,
+      
           include: [
             {model: db.city,
               include: [
@@ -24,17 +25,19 @@ router.get('/city', function(req, res) {
                     }]
                   }]
                 }]
-              }]
             })
     //         ,
     //
     // ])
     .then(function(list) {
-      res.render('city', {
-        country: list
+        console.log(list)
+      res.render('city'
+      , {
+        countries: list
       })
-    })
+    // })
   })
+})
 
 
 module.exports = router;
