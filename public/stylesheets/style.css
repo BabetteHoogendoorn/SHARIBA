@@ -485,8 +485,31 @@ ul.navbar-nav li.active > .dropdown-menu > li.active > a{
   }
 }
 
+
+/*searchbar and search button*/
 #foundPlaces {
 	z-index: 100;
 	background-color: white;
 	color:black;
+	position: absolute;
+	width:100%;
+}
+.newCity {
+	border: 1px #efefef solid;
+	cursor:pointer;
+	padding:10px;
+}
+.newCity:hover {
+	background-color: #4668FF;
+	color:white;
+}
+#searchbutton {
+	border:solid 1px #efefef;
+	background-color: #efefef;
+	color:#888;
+	margin:5px;
+}
+#searchbutton:hover{
+	background-color: #cfcfcf;
+	color:white;
 }

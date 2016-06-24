@@ -4,14 +4,13 @@ var Sequelize = require('sequelize')
 var db = require('../modules/database')
 
 router.post('/ajaxSearch', function(req, res){
-	console.log('hi i am ajax')
 	var storePlaces = [];
 	var searchTyping = req.body.searchTyping.toLowerCase()
 	
 	db.city.findAll({
 		include: [db.country]
 	}).then(function(allcities) {
-		console.log('allcities ' + allcities)
+		// console.log('allcities ' + allcities)
 		for(var i=0; i<allcities.length; i++ ){
 			var cityNames = allcities[i].name.toLowerCase();
 			var countryNames = allcities[i].country.name.toLowerCase();
@@ -32,7 +31,6 @@ router.post('/ajaxSearch', function(req, res){
 
 
 router.post('/searchResult', function(req, res){
-	console.log('hi i am found')
 	var storePlaces = [];
 	var searchTyping = req.body.searchTyping.toLowerCase()
 	

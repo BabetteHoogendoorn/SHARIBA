@@ -53,12 +53,9 @@ head
                 a(href='/logout') Logout
               li
                 form(name="searchform", method="post", action="/search/searchResult")
-                  div.input
-                      span.label 
-                      input#searching(type="text", name="searchTyping")
+                      input#searching(type="text", name="searchTyping", autocomplete="off")
                       div#foundPlaces
-                  div.actions
-                      input(type="submit", value="Search")
+                      input#searchbutton(type="submit", value="Search")
 
 
 
