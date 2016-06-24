@@ -6,26 +6,35 @@ var pg = require('pg');
 var Sequelize = require('sequelize');
 
 // Set the view engine
-router.set( 'views', 'views' )
-router.set( 'view engine', 'pug' )
+// router.set( 'views', 'views' )
+// router.set( 'view engine', 'pug' )
 
 /* GET city page. */
 router.get('/city', function(req, res) {
-  Promise.all([
-    country.findAll({
+  // Promise.all([
+    db.country.findAll({
       include: [
-        {model: db.country},
-        {model: deb.city,
-        include: {model: db.cityTip,
-          include: {model: db.user}
-        }]
-    })then.(function(list) {
-      response.render('city', {
+        {model: db.country,
+          include: [
+            {model: db.city,
+              include: [
+                {model: db.cityTip,
+                  include: [
+                    {model: db.user
+                    }]
+                  }]
+                }]
+              }]
+            })
+    //         ,
+    //
+    // ])
+    .then(function(list) {
+      res.render('city', {
         country: list
       })
     })
   })
-})
 
 
 module.exports = router;

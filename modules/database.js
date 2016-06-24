@@ -105,22 +105,13 @@ db.user.hasMany(db.cityTip)
 db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
 
+
 db.conn.sync({force: true
 }).then(function() {
 	console.log('sync done')
 }).then(function(){
 	Promise.all([
 		db.country.create({
-			name: 'Austria'
-		}).then(function(thecountry){
-			db.city.create({
-
-db.conn.sync({force: true
-})then.(function() {
-	console.log('sync done')
-}).then(function(){
-	Promise.all([
-		country.create({
 			name: 'Austria'
 		}).then(function(thecountry){
 			city.create({
@@ -163,8 +154,6 @@ db.conn.sync({force: true
 			name:'Cyprus Republic'
 		}).then(function(thecountry){
 			db.city.create({
-			name:'Cyprus Republic'
-		}).then(function(thecountry){
 				name:'Nicosia',
 				countryId: thecountry.id
 			})
