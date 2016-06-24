@@ -3,22 +3,23 @@ var fireRequest = true;
 $ ( document ).ready( function () {
 	console.log('dom is ready')
 
-	$ ( '#searchform' ).on ( "keyup",function (){
+	$ ( '#searching' ).on ( "keyup",function (){
 		var inputLetters = {
-			searchTyping: $ ('#searchform') .val( )
+			searchTyping: $ ('#searching') .val( )
 		}
 		$('#foundPlaces').empty()
 			if(fireRequest) {
 				fireRequest = false
 				$.post ('search/ajaxSearch', inputLetters, function(data){
 
-					for (person in data){
-						console.log(data[person].firstname)
-						$ ( '#foundPlaces' ).append( '<div class="newCity">' + data[person].firstname + " " + 
-							data[person].lastname + '</div>' )
+					for (place in data){
+						//console.log(data[place].name)
+						$ ( '#foundPlaces' ).append( '<div class="newCity">' + data[place].name + " " + 
+							data[place].country.name + '</div>' )
 					}
 					$ ( '.newCity' ) .click( function() { 
-						$('#searchform').val($(this).text()) 
+						$('#searching').val($(this).text()) 
+						$('#foundPlaces').empty()
 					})
 				})
 				setTimeout(function(){
