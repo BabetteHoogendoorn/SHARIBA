@@ -107,13 +107,42 @@ db.city.hasMany(db.cityTip)
 
 db.conn.sync({force: true
 }).then(function() {
+
 	console.log('sync done')
 }).then(function(){
 	Promise.all([
-		db.country.create({
-			name: 'Austria'
-		}).then(function(thecountry){
-			db.city.create({
+  db.user.create({
+    name: 'kip',
+    email: 'kip',
+    password: 'kip'
+  }),
+    db.country.create({
+      name: 'Netherlands'
+    }).then(function(thecountry){
+      db.city.create({
+        name:'Amsterdam',
+        countryId: thecountry.id}
+        ),
+      db.city.create({
+        name:'Eindhoven',
+        countryId: thecountry.id}
+        ).then(function(thecity){
+          db.cityTip.create({
+            title:'Top spot',
+            body:'This place is awesome!',
+            user_id: 1
+          })
+        })
+      }),
+    db.country.create({
+      name:'Austria'
+    }).then(function(thecountry){
+     db.city.create({
+      name:'Salzburg',
+      countryId: thecountry.id
+        })
+   })
+    
 
 db.conn.sync({force: true
 })then.(function() {
@@ -383,9 +412,13 @@ db.conn.sync({force: true
 					user_countryId: 4
 				})
 			})
-		})
-	])
-})
+		});
+	
+
+
+ console.log('sync done')
+ 
+
 
 
 module.exports = db

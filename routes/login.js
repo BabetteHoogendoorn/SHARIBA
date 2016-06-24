@@ -7,14 +7,8 @@ var Sequelize = require('sequelize');
 var db = require('../modules/database.js');
 var pg = require('pg');
 
-router.use(session({
-  secret: 'oh wow very secret much security',
-  resave: true,
-  saveUninitialized: false
-}));
-
-router.get('/', function(request, response) {
-	response.render('login', {title: 'Tipster Login'});
+router.get('/', function(req, res) {
+	res.render('login', {title: 'Tipster Login'});
 });
 
 
@@ -35,13 +29,14 @@ router.post('/login', function (req, res){
 		}
 	}).then(function (theuser) {
 		if (theuser !== null && req.body.password === theuser.password) {
-			req.session.user = theuser;
+			req.session.user = theuser
+			console.log('Setting session: ' + req.session.user.name)
 			res.redirect('/profile');
 		} else {
 			res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
 		}
 	}, function (error) {
-		res.redirect('/?message=' + encodeURIComponent("kipppp"));
+		res.redirect('/?message=' + encodeURIComponent(error));
 	});
 });
 
