@@ -8,10 +8,23 @@ var fs = require('fs');
 var pg = require('pg');
 //var bcrypt = require('bcrypt');
 var session = require('express-session');
-
-
 var app = express();
 
+// Session config
+app.use(session({
+  secret: 'oh wow very secret much security',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    expires: false
+  }
+}));
+  app.use(function(req,res,next){
+    console.log('main triggered ' + Date.now())
+    next()
+})
+
+// Get all routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var profile = require('./routes/profile');
@@ -21,12 +34,13 @@ var login = require ('./routes/login');
 var register = require ('./routes/register');
 var logout = require ('./routes/logout')
 
+// Get database config
 var db = require('./modules/database')
 
-
-
+// var theuser = req.session.user
+  
 // view engine setup
-app.set('views', path.join('views'));
+app.set('views', './views');
 app.set('view engine', 'jade');
 
 
@@ -34,7 +48,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static ('./public'));
 
 app.use('/', routes);
 app.use('/login', login);
@@ -43,13 +56,9 @@ app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);
 app.use('/logout', logout);
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(session({
-  secret: 'oh wow very secret much security',
-  resave: true,
-  saveUninitialized: false
-}));
 
+// Static files
+app.use(express.static('./public'));
 
 
 // // catch 404 and forward to error handler
@@ -85,4 +94,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+app.listen(3000)

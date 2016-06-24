@@ -4,25 +4,24 @@ var pg = require('pg');
 var Sequelize = require('sequelize');
 var session = require('express-session');
 var db = require('../modules/database');
+var bodyParser = require('body-parser');
 
-router.use(session({
-  secret: 'oh wow very secret much security',
-  resave: true,
-  saveUninitialized: false
-}));
-
-router.get('/', function(request, response) {
-	var user = request.session.user;
+router.get('/', function(req, res) {
+	var user = req.session.user;
+	console.log('Getting session: ')
+	console.log(req.session)
+	console.log('Setting session user: ')
+	console.log(user)
 	if (user === undefined) {
-		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
+		res.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
 	} else {
-		var ID = request.session.user.id;
+		var ID = req.session.user.id;
 		db.cityTip.findAll({
 			where: {
 				user_id: ID,
 			}
 		}).then(function(cityTips) {
-			var Data = cityTip.map(function(profiletips) {
+			var Data = cityTips.map(function(profiletips) {
 				return {
 					title: profiletips.dataValues.title,
 					body: profiletips.dataValues.body,
@@ -34,11 +33,10 @@ router.get('/', function(request, response) {
 			var usersCityTips = Data;
 
 			console.log(usersCityTips);
-			//console.log(allComments);
-			response.render('profile', {
+			res.render('profile', {
 				title: 'Tipster Profile',
 				usersCityTips: usersCityTips,
-				name: request.session.user.name
+				name: req.session.user.name
 			});
 		});
 	}
