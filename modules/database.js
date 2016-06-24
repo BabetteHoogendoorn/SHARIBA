@@ -1,8 +1,5 @@
 var pg = require('pg');
-
-
 // container object
-
 var db = {
   mod: {}
 }
@@ -10,7 +7,7 @@ var db = {
 //set up sql
 var pg = require('pg');
 var Sequelize = require('sequelize');
-db.conn = new Sequelize('shariba', process.env.POSTGRES_USER, 
+db.conn = new Sequelize('shariba', process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD, {
   host: 'localhost',
   dialect: 'postgres',
@@ -101,13 +98,14 @@ db.cityTip = db.conn.define('cityTip', {
 
 
 //establish relationships
+
 db.country.hasMany(db.city)
 db.city.belongsTo(db.country)
 db.user.hasMany(db.cityTip)
 db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
 
-//synchronize with database
+
 db.conn.sync({force: true
 }).then(function() {
   console.log('sync done')
@@ -382,5 +380,6 @@ db.conn.sync({force: true
     })
   ])
 })
+
 
 module.exports = db
