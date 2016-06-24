@@ -55,7 +55,7 @@ head
                 form(name="searchform", method="post", action="/search/searchResult")
                   div.input
                       span.label 
-                      input(type="text", name="searchTyping")
+                      input#searching(type="text", name="searchTyping")
                       div#foundPlaces
                   div.actions
                       input(type="submit", value="Search")
