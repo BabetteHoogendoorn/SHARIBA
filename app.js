@@ -56,7 +56,6 @@ app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);
 app.use('/logout', logout);
-app.use('/citytip', search)
 
 
 // Static files

@@ -30,9 +30,10 @@ router.post('/ajaxSearch', function(req, res){
 
 
 
-router.post('/searchResult', function(req, res){
+router.post('/', function(req, res){
 	var searchTyping = req.body.searchTyping.toLowerCase()
-	
+	var city =[]
+
 	db.city.findAll({
 		include: [{model: db.country}, {model: db.cityTip}]
 	}).then(function(allcities) {
@@ -46,14 +47,22 @@ router.post('/searchResult', function(req, res){
 
 			if( searchTyping === cityNames || (searchTyping === cityNames + ' ' + countryNames) ) {
 				console.log('scoooooreeeeeee ' + cityNames + ' ' + countryNames)
-				res.render('citytip', {
-					city: allcities[i]
-				})
+				city.push(allcities[i])
+				// res.send(allcities[i])
+				// res.render('citytip', {
+				// 	city: allcities[i]
+				// })
+				return city
 			} else if ( searchTyping === countryNames ){
 				res.redirect('/city')
 			}
 		}
-	})
+	}).then(function(city){
+		console.log(city[0])
+			res.render('citytip', {
+				city: city[0]
+			})
+		})
 })
 
 
