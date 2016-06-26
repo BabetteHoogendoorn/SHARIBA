@@ -12,28 +12,32 @@ var Sequelize = require('sequelize');
 
 
 /* GET city page. */
-    router.get('/', function(req, res) {
-    // Promise.all([
-    db.country.findAll({
+router.get('/', function(req, res) {
+// Promise.all([
+db.country.findAll({
+
       include: [
         {model: db.city,
-            include: {model: db.cityTip}}
-        }]      
+          include: [
+            {model: db.cityTip,
+              include: [
+                {model: db.user
+                }]
+              }]
+            }]
         })
-
-    }).then(function(list) {
-        console.log(list[0])
-
-
-      res.render('city'
-      , {
-        countries: list
-      })
-    // })
+//         ,
+//
+// ])
+.then(function(list) {
+    console.log(list)
+  res.render('city'
+  , {
+    countries: list
   })
+// })
+})
 })
 
 
 module.exports = router;
-
-
