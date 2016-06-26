@@ -20,7 +20,7 @@ router.post('/ajaxSearch', function(req, res){
 
 			if( inputCountry != -1 || inputCity != -1 ) {
 				storePlaces.push(allcities[i])
-				console.log('[i]' + allcities[i].name + allcities[i].country.name)
+				//console.log('[i]' + allcities[i].name + allcities[i].country.name)
 			}
 			
 		}res.send(storePlaces)
@@ -34,8 +34,7 @@ router.post('/searchResult', function(req, res){
 	var searchTyping = req.body.searchTyping.toLowerCase()
 	
 	db.city.findAll({
-		include: [db.country], 
-		include: [db.cityTip]
+		include: [{model: db.country}, {model: db.cityTip}]
 	}).then(function(allcities) {
 
 		for(var i=0; i<allcities.length; i++ ){
@@ -45,14 +44,13 @@ router.post('/searchResult', function(req, res){
 			var inputCountry = countryNames.indexOf(searchTyping);
 			var inputCity = cityNames.indexOf(searchTyping);
 
-			if( inputCountry != -1 ) {
-				storePlaces.push(allcities)
-			}
-
-			if( inputCity != -1 ) {
+			if( searchTyping === cityNames || (searchTyping === cityNames + ' ' + countryNames) ) {
+				console.log('scoooooreeeeeee ' + cityNames + ' ' + countryNames)
 				res.render('citytip', {
 					city: allcities[i]
 				})
+			} else if ( searchTyping === countryNames ){
+				res.redirect('/city')
 			}
 		}
 	})

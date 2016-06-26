@@ -1,9 +1,6 @@
 extends ./layout.jade
 
-	h2 Hoi
-
-	each tip in city
-		p=city.cityTip.title
-		p=city.cityTip.body
-		br
-		
+h2 Hoi
+each tip in city.cityTip
+	p #{tip.title}
+	p #{tip.body}
