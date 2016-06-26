@@ -19,10 +19,7 @@ db.country.findAll({
       include: [
         {model: db.city,
           include: [
-            {model: db.cityTip,
-              include: [
-                {model: db.user
-                }]
+            {model: db.cityTip
               }]
             }]
         })

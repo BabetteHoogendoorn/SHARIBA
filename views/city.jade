@@ -9,6 +9,9 @@ block content
        h2=country.name
             each city in country.cities
                 h2= city.name
-                each tip in cityTips
-                  tip #{tip.title}
+                  each tip in city.cityTips
+                    tip #{tip.title}
+                    h2= tip.title
+                    tip #{tip.body}
+                    h2= tip.body
                     

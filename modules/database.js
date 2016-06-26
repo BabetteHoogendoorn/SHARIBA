@@ -104,6 +104,7 @@ db.city.belongsTo(db.country)
 db.user.hasMany(db.cityTip)
 db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
+db.cityTip.belongsTo(db.city)
 
 
 db.conn.sync({force: true
