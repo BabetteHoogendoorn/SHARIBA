@@ -33,6 +33,7 @@ var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register');
 var logout = require ('./routes/logout');
+var about = require ('./routes/about')
 
 
 // Get database config
@@ -58,6 +59,7 @@ app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);
 app.use('/logout', logout);
+app.use('/about',about)
 
 
 // Static files

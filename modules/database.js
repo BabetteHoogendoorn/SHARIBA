@@ -8,12 +8,12 @@ var pg = require('pg')
 var Sequelize = require('sequelize')
 db.conn = new Sequelize('shariba', process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD, {
-  host: 'localhost',
-  dialect: 'postgres',
-  define: {
-    timestamps: false
-  }
-});
+    host: 'localhost',
+    dialect: 'postgres',
+    define: {
+      timestamps: false
+    }
+  });
 
 //Models
 db.user = db.conn.define('users', {
@@ -111,10 +111,10 @@ db.conn.sync({force: true
 }).then(function(){
   Promise.all([
     db.user.create({
-        name: 'kip',
-        email: 'kip',
-        password: 'kip'
-      }),
+      name: 'kip',
+      email: 'kip',
+      password: 'kip'
+    }),
     db.country.create({
       name: 'Austria'
     }).then(function(thecountry){
@@ -380,9 +380,9 @@ db.conn.sync({force: true
           user_id: 4,
           cityId: thecity.id
         });
-   });
+      });
     })
-    ]);
+  ]);
 });
 
 module.exports = db
