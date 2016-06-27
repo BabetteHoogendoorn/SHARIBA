@@ -133,7 +133,8 @@ db.conn.sync({force: true
         db.cityTip.create({
           title:'This little guy',
           body:'He pees in a fountain',
-          user_id: 2
+          user_id: 2,
+          cityId: thecity.id
         })
       })
     }),

@@ -35,7 +35,7 @@ router.post('/', function(req, res){
 	var city =[]
 
 	db.city.findAll({
-		include: [{model: db.country}, {model: db.cityTip}]
+		include: [db.country, db.cityTip]
 	}).then(function(allcities) {
 
 		for(var i=0; i<allcities.length; i++ ){
@@ -47,22 +47,23 @@ router.post('/', function(req, res){
 
 			if( searchTyping === cityNames || (searchTyping === cityNames + ' ' + countryNames) ) {
 				console.log('scoooooreeeeeee ' + cityNames + ' ' + countryNames)
-				city.push(allcities[i])
-				// res.send(allcities[i])
-				// res.render('citytip', {
-				// 	city: allcities[i]
-				// })
+				// city.push(allcities[i])
+				//res.send(allcities[i])
+				res.render('citytip', {
+					city: allcities[i]
+				})
 				return city
 			} else if ( searchTyping === countryNames ){
 				res.redirect('/city')
 			}
 		}
-	}).then(function(city){
-		console.log(city[0])
-			res.render('citytip', {
-				city: city[0]
-			})
-		})
+	})
+	// .then(function(city){
+	// 	console.log(city[0])
+	// 		res.render('citytip', {
+	// 			city: city[0]
+	// 		})
+	// 	})
 })
 
 

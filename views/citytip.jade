@@ -1,12 +1,11 @@
 extends ./layout.jade
 
-h2 waddup
-//- each place in city
-//- 	h2 'The city tips of ' + #{place.name} + ' in ' + #{place.country.name}
+block content
+	h2 The city tips of <b> #{city.name} </b> in #{city.country.name}
 
-//- if city.cityTip
-//- 	each tip in city.cityTip
-//- 		p #{tip.title}
-//- 		p #{tip.body}
-//- else 
-//- 	p No city tips were found.
+	if city.cityTips
+		each tip in city.cityTip
+			p #{tip.title}
+			p #{tip.body}
+	else 
+		p No city tips were found.
