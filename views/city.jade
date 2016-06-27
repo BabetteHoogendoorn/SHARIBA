@@ -1,5 +1,24 @@
 extends ./layout.jade
 
+doctype html
+html
+  title Cities
+  head
+  h1 List of cities and cityTips!
+  body
+    each country in db.country
+      country #{country.name}
+      h2= country.name
+    each city in db.country.city
+      city #{city.name}
+      h3= country.city.name
+    each user in db.user
+      user #{cityTip.user.name}
+      h4= user.name 
+      each tip in db.cityTip  
+        p #{city.cityTip.title}
+        p #{city.cityTip.body}
+      
 
 block content
     h1 List of cities and cityTips!

@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var pg = require('pg');
-var bcrypt = require('bcrypt-node');
 var session = require('express-session');
 var app = express();
 console.log('hello')
@@ -20,9 +19,9 @@ app.use(session({
     expires: false
   }
 }));
-  app.use(function(req,res,next){
-    console.log('main triggered ' + Date.now())
-    next()
+app.use(function(req,res,next){
+  console.log('main triggered ' + Date.now())
+  next()
 })
 
 // Get all routes
@@ -33,13 +32,14 @@ var city = require('./routes/city');
 var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register');
-var logout = require ('./routes/logout')
+var logout = require ('./routes/logout');
+
 
 // Get database config
 var db = require('./modules/database')
 
 // var theuser = req.session.user
-  
+
 // view engine setup
 app.set('views', './views');
 app.set('view engine', 'jade');
@@ -59,8 +59,10 @@ app.use('/users', users);
 app.use('/search', search);
 app.use('/logout', logout);
 
+
 // Static files
 app.use(express.static('./public'));
+app.use('/search', express.static('./public'));
 
 
 // // catch 404 and forward to error handler
