@@ -8,6 +8,7 @@ var fs = require('fs');
 var pg = require('pg');
 var session = require('express-session');
 var app = express();
+console.log('hello')
 
 // Session config
 app.use(session({
@@ -18,9 +19,9 @@ app.use(session({
     expires: false
   }
 }));
-  app.use(function(req,res,next){
-    console.log('main triggered ' + Date.now())
-    next()
+app.use(function(req,res,next){
+  console.log('main triggered ' + Date.now())
+  next()
 })
 
 // Get all routes
@@ -31,13 +32,14 @@ var city = require('./routes/city');
 var search = require ('./routes/search')
 var login = require ('./routes/login');
 var register = require ('./routes/register');
-var logout = require ('./routes/logout')
+var logout = require ('./routes/logout');
+
 
 // Get database config
 var db = require('./modules/database')
 
 // var theuser = req.session.user
-  
+
 // view engine setup
 app.set('views', './views');
 app.set('view engine', 'jade');
@@ -51,13 +53,16 @@ app.use(cookieParser());
 app.use('/', routes);
 app.use('/login', login);
 app.use('/profile', profile);
+app.use('/city', city);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/search', search);
 app.use('/logout', logout);
 
+
 // Static files
 app.use(express.static('./public'));
+app.use('/search', express.static('./public'));
 
 
 // // catch 404 and forward to error handler
@@ -94,3 +99,8 @@ app.use(function(err, req, res, next) {
 
 
 app.listen(3000)
+
+
+
+
+module.exports = app;

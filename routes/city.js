@@ -5,27 +5,32 @@ var db = require('../modules/database');
 var pg = require('pg');
 var Sequelize = require('sequelize');
 
-// // Set the view engine
+// Set the view engine
 // router.set( 'views', 'views' )
 // router.set( 'view engine', 'pug' )
 
+
+
 /* GET city page. */
-router.get('/city', function(req, res) {
-  // Promise.all([
-  //   country.findAll({
-  //     include: [
-  //       {model: db.country},
-  //       {model: deb.city,
-  //       include: {model: db.cityTip,
-  //         include: {model: db.user}
-  //       }]
-  //   })then.(function(list) {
-  //     response.render('city', {
-  //       country: list
-  //     })
-  //   })
-  // }
-});
-;
+router.get('/', function(req, res) {
+
+db.country.findAll({
+
+      include: [db.city, db.cityTip]
+    })
+        })
+//         ,
+//
+// ])
+.then(function(list) {
+    console.log(list)
+  res.render('city'
+  , {
+    countries: list
+  })
+// })
+})
+})
+
 
 module.exports = router;

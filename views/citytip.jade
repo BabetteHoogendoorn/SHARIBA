@@ -1,1 +1,12 @@
 extends ./layout.jade
+
+block content
+	h2 The city tips of <b> #{city.name} </b> in #{city.country.name}
+
+	if city.cityTips
+		each tip in city.cityTips
+			br
+			p <b>#{tip.title}</b>
+			p #{tip.body}
+		else 
+			p No city tips were found.
