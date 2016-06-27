@@ -1,13 +1,11 @@
-extends ./layout.jade
-
-script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-			
+extends ./layout.jade			
 
 	
 
-block navbar
+block content
+	.middle.login-foorm
 		h2 Hello #{name}
 		p Welkom op je profiel
-			each db.cityTip in usersCityTips
+			each cityTip in usersCityTips
 				h2 #{cityTip.title}
 				h3 ✏ #{cityTip.body}
