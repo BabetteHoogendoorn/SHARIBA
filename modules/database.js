@@ -173,7 +173,8 @@ db.conn.sync({force: true
         db.cityTip.create({
           title:'drinks at this bar',
           body:'Come here for the cheapest beers',
-          user_id: 3
+          user_id: 3,
+          cityId: thecity.id
         })
       })
     }),
@@ -295,7 +296,8 @@ db.conn.sync({force: true
           db.cityTip.create({
             title:'Top spot',
             body:'This place is awesome!',
-            user_id: 1
+            user_id: 1,
+            cityId: thecity.id
           })
         })
       })
@@ -374,7 +376,8 @@ db.conn.sync({force: true
         db.cityTip.create({
           title:'This place is holy',
           body:'I have seen the pope, such a nice guy!',
-          user_countryId: 4
+          user_id: 4,
+          cityId: thecity.id
         })
       })
     })
