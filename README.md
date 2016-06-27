@@ -22,4 +22,6 @@ Some functionalities are still missing though, like adding a favourite spot and 
 
 4. For easy editing the app, do a "npm install nodemon" which allows you to edit the back-end and not having to restart your app each time with a node app.js.
 
+5. To start your app, type "node app.js" or "nodemon app.js" 
+
 <b>Enjoy!</b>
