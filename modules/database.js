@@ -104,6 +104,7 @@ db.city.belongsTo(db.country)
 db.user.hasMany(db.cityTip)
 db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
+db.cityTip.belongsTo(db.city)
 
 
 db.conn.sync({force: true
@@ -398,14 +399,14 @@ db.conn.sync({force: true
 	console.log('sync done')
 }).then(function(){
 	Promise.all([
-		db.country.create({
-			name: 'Austria'
-		}).then(function(thecountry){
-			city.create({
-				name:'Vienna',
-				countryId: thecountry.id
-			})
-		}),
+		// db.country.create({
+		// 	name: 'Austria'
+		// }).then(function(thecountry){
+		// 	city.create({
+		// 		name:'Vienna',
+		// 		countryId: thecountry.id
+		// 	})
+		// }),
 		db.country.create({
 			name:'Belgium'
 		}).then(function(thecountry){
@@ -416,7 +417,7 @@ db.conn.sync({force: true
 				db.cityTip.create({
 					title:'This little guy',
 					body:'He pees in a fountain',
-					user_id: 2
+					cityId: thecity.id
 				})
 			})
 		}),
@@ -455,7 +456,7 @@ db.conn.sync({force: true
 				db.cityTip.create({
 					title:'drinks at this bar',
 					body:'Come here for the cheapest beers',
-					user_id: 3
+					cityId: thecity.id
 				})
 			})
 		}),
@@ -577,7 +578,7 @@ db.conn.sync({force: true
 					db.cityTip.create({
 						title:'Top spot',
 						body:'This place is awesome!',
-						user_id: 1
+						cityId: thecity.id
 					})
 				})
 			})
@@ -656,7 +657,7 @@ db.conn.sync({force: true
 				db.cityTip.create({
 					title:'This place is holy',
 					body:'I have seen the pope, such a nice guy!',
-					user_countryId: 4
+					cityId: thecity.id
 				})
 			})
 		});
