@@ -349,6 +349,27 @@ ul.navbar-nav li.active > .dropdown-menu > li.active > a{
   -webkit-box-sizing: border-box;
   font-family: arial;
 }
+.login-foorm {
+  width: 350px;
+  font-family: 'Permanent Marker';
+  text-align: center;
+  padding: 40px 30px;
+  background: #eee;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin: auto;
+  position: absolute;
+  border: 3px solid #10CE88;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .login-form {
   width: 350px;
   font-family: 'Permanent Marker';
