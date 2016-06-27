@@ -14,23 +14,17 @@ var Sequelize = require('sequelize');
 /* GET city page. */
 router.get('/', function(req, res) {
 
-db.country.findAll({
-
-      include: [db.city, db.cityTip]
-    })
-        })
-//         ,
-//
-// ])
-.then(function(list) {
-    console.log(list)
-  res.render('city'
-  , {
-    countries: list
-  })
-// })
+	db.country.findAll({
+		include: [{model: db.city, 
+			include: [{model: db.cityTip}]
+		}]
+	}).then(function(list) {
+		console.log(list)
+		res.render('city'
+			, {
+				countries: list
+			})
+	})
 })
-})
-
 
 module.exports = router;

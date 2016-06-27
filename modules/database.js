@@ -1,12 +1,11 @@
-var pg = require('pg');
 // container object
 var db = {
   mod: {}
 }
 
 //set up sql
-var pg = require('pg');
-var Sequelize = require('sequelize');
+var pg = require('pg')
+var Sequelize = require('sequelize')
 db.conn = new Sequelize('shariba', process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD, {
   host: 'localhost',
@@ -106,10 +105,9 @@ db.cityTip.belongsTo(db.user)
 db.city.hasMany(db.cityTip)
 db.cityTip.belongsTo(db.city)
 
-
 db.conn.sync({force: true
 }).then(function() {
-  console.log('sync done')
+  console.log('sync done');
 }).then(function(){
   Promise.all([
     db.user.create({
@@ -123,7 +121,7 @@ db.conn.sync({force: true
       city.create({
         name:'Vienna',
         countryId: thecountry.id
-      })
+      });
     }),
 
     db.country.create({
@@ -138,8 +136,8 @@ db.conn.sync({force: true
           body:'He pees in a fountain',
           user_id: 2,
           cityId: thecity.id
-        })
-      })
+        });
+      });
     }),
 
     db.country.create({
@@ -148,7 +146,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Sofia',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Croatia'
@@ -156,7 +154,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Zagreb',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Cyprus Republic'
@@ -164,7 +162,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Nicosia',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Czech Republic'
@@ -178,8 +176,8 @@ db.conn.sync({force: true
           body:'Come here for the cheapest beers',
           user_id: 3,
           cityId: thecity.id
-        })
-      })
+        });
+      });
     }),
     db.country.create({
       name:'Denmark'
@@ -187,7 +185,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Copenhagen',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Estonia'
@@ -195,7 +193,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Tallinn',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Finland'
@@ -203,7 +201,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Helsinki',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'France'
@@ -211,7 +209,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Paris',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Germany'
@@ -219,7 +217,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Berlin',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Greece'
@@ -227,7 +225,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Athens',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Hungary'
@@ -235,7 +233,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Budapest',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Ireland'
@@ -243,7 +241,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Dublin',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Italy'
@@ -251,7 +249,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Rome',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Latvia'
@@ -259,7 +257,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Riga',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Lithuania'
@@ -267,7 +265,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Vilnius',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Luxembourg'
@@ -275,7 +273,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Luxembourg',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Malta'
@@ -283,7 +281,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Valletta',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Netherlands'
@@ -301,9 +299,9 @@ db.conn.sync({force: true
             body:'This place is awesome!',
             user_id: 1,
             cityId: thecity.id
-          })
-        })
-      })
+          });
+        });
+      });
     }),
     db.country.create({
       name:'Poland'
@@ -311,7 +309,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Warsaw',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Portugal'
@@ -319,7 +317,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Lisbon',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Romania'
@@ -327,7 +325,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Bucharest',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Slovakia'
@@ -335,7 +333,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Bratislava',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Slovena'
@@ -343,7 +341,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Ljubljana',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Spain'
@@ -351,7 +349,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Madrid',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Sweden'
@@ -359,7 +357,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'Stockholm',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'United Kingdom'
@@ -367,7 +365,7 @@ db.conn.sync({force: true
       db.city.create({
         name:'London',
         countryId: thecountry.id
-      })
+      });
     }),
     db.country.create({
       name:'Vatican City'
@@ -381,12 +379,10 @@ db.conn.sync({force: true
           body:'I have seen the pope, such a nice guy!',
           user_id: 4,
           cityId: thecity.id
-        })
-   })
-
-
-console.log('sync done')
-
-
+        });
+   });
+    })
+    ]);
+});
 
 module.exports = db
